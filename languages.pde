@@ -90,20 +90,18 @@ void images()
 
 void setup_choose_length()
 {
-  int choose_size = 6;
-  choose_length = new Checkbox[choose_size];
-  for(int i=0;i<choose_size;i++)
-    choose_length[i] = new Checkbox(String.valueOf(i+2), 100*(i/(choose_size/2)+1), 600+50*(i%(choose_size/2)));
-  group_choose_length = new Checkbox_group(choose_size, choose_length);
-} 
+  choose_length = new Checkbox[6];
+  for(int i=0;i<choose_length.length;i++)
+    choose_length[i] = new Checkbox(String.valueOf(i+2), 100*(i/(choose_length.length/2)+1), 600+50*(i%(choose_length.length/2)));
+  group_choose_length = new Checkbox_group(choose_length);
+}
 
 void setup_choose_number()
 {
-  int choose_size = 3;
-  choose_number = new Checkbox[choose_size];
-  for(int i=0;i<choose_size;i++)
+  choose_number = new Checkbox[3];
+  for(int i=0;i<choose_number.length;i++)
     choose_number[i] = new Checkbox(String.valueOf(12*(i+1)), 100, 600+50*i);
-  group_choose_number = new Checkbox_group(choose_size,choose_number);
+  group_choose_number = new Checkbox_group(choose_number);
 }
 
 String random_word()
