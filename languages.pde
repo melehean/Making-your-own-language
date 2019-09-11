@@ -73,7 +73,7 @@ void second_window()
   show_text("Number of words in every generation", "Choose only one number from these beneath :)");
   group_choose_number.run();
   next_button.show();
-  if(next_button.get_pressed() == true)
+  if(next_button.get_pressed())
   {
     words_number = (group_choose_number.get_checked()+1)*12;
     current_window = 3;
@@ -90,32 +90,28 @@ void images()
 
 void setup_choose_length()
 {
-  choose_length = new Checkbox[10];
-  choose_length[0] = new Checkbox("2", 100, 600);
-  choose_length[1] = new Checkbox("3", 100, 650);
-  choose_length[2] = new Checkbox("4", 100, 700);
-  choose_length[3] = new Checkbox("5", 200, 600);
-  choose_length[4] = new Checkbox("6", 200, 650);
-  choose_length[5] = new Checkbox("7", 200, 700);
-  group_choose_length = new Checkbox_group(6, choose_length);
+  int choose_size = 6;
+  choose_length = new Checkbox[choose_size];
+  for(int i=0;i<choose_size;i++)
+    choose_length[i] = new Checkbox(String.valueOf(i+2), 100*(i/(choose_size/2)+1), 600+50*(i%(choose_size/2)));
+  group_choose_length = new Checkbox_group(choose_size, choose_length);
 } 
 
 void setup_choose_number()
 {
-  choose_number = new Checkbox[3];
-  choose_number[0] = new Checkbox("12", 100, 600);
-  choose_number[1] = new Checkbox("24", 100, 650);
-  choose_number[2] = new Checkbox("36", 100, 700);
-  group_choose_number = new Checkbox_group(3,choose_number);
+  int choose_size = 3;
+  choose_number = new Checkbox[choose_size];
+  for(int i=0;i<choose_size;i++)
+    choose_number[i] = new Checkbox(String.valueOf(12*(i+1)), 100, 600+50*i);
+  group_choose_number = new Checkbox_group(choose_size,choose_number);
 }
 
 String random_word()
 {
-  int i;
-  String help_string = new String("");
-  for(i=0;i<word_length;i++)
-    help_string+=(char)(random(97,123));
-  return help_string;
+  StringBuilder help_string = new StringBuilder();
+  for(int i=0;i<word_length;i++)
+    help_string.append((char)(random(26)+'a'));
+  return help_string.toString();
 }
 
 void show_text(String heading, String sentence)
