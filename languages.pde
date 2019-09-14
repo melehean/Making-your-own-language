@@ -11,6 +11,7 @@ Button next_button, next_generation;
 void setup()
 {
   size(1400, 1000);
+  frameRate(15);
   current_window = 0;
   setup_choose_length();
   setup_choose_number();
